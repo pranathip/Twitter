@@ -1,14 +1,16 @@
 //
 //  AppDelegate.h
-//  Twitter
+//  twitter
 //
-//  Created by Pranathi Peri on 6/29/20.
-//  Copyright © 2020 Pranathi Peri. All rights reserved.
+//  Created by emersonmalca on 5/28/18.
+//  Copyright © 2018 Emerson Malca. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end
