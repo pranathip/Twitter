@@ -7,10 +7,11 @@
 //
 
 #import "APIManager.h"
+#import "Tweet.h"
 
 static NSString * const baseURLString = @"https://api.twitter.com";
-static NSString * const consumerKey = // Enter your consumer key here
-static NSString * const consumerSecret = // Enter your consumer secret here
+static NSString * const consumerKey = @"Zs7dcRb6JfRkOgB0raTiHs80r";// Enter your consumer key here
+static NSString * const consumerSecret = @"0f8OdhJFvs1MXX7YP5Pk2j23fpxmW1ePTMIH1EtdqbqfPRbmy5";// Enter your consumer secret here
 
 @interface APIManager()
 
@@ -49,7 +50,19 @@ static NSString * const consumerSecret = // Enter your consumer secret here
 
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
     
+    // Create a GET Request
     [self GET:@"1.1/statuses/home_timeline.json"
+        parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+            // Success
+            NSMutableArray *tweets  = [Tweet tweetsWithArray:tweetDictionaries];
+            completion(tweets, nil);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            // There was a problem
+            completion(nil, error);
+        }];
+    
+    // ARRAY OF DICTIONARIES
+    /*[self GET:@"1.1/statuses/home_timeline.json"
    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
        
        // Manually cache the tweets. If the request fails, restore from cache if possible.
@@ -69,7 +82,7 @@ static NSString * const consumerSecret = // Enter your consumer secret here
        }
        
        completion(tweetDictionaries, error);
-   }];
+   }];*/
 }
 
 @end
