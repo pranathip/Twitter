@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -24,23 +25,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+       self.tableView.dataSource = self;
     
+    // Refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getTimeline) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    [self getTimeline];
+   
+}
+
+- (void) getTimeline {
     // Get timeline
-    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-        if (tweets) {
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            self.tweets = [NSMutableArray arrayWithArray:tweets];
-            [self.tableView reloadData];
-            //NSLog(@"%@", tweets);
-            /*for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
-                NSLog(@"%@", text);
-            }*/
-        } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-        }
-    }];
+       [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+           if (tweets) {
+               NSLog(@"😎😎😎 Successfully loaded home timeline");
+               self.tweets = [NSMutableArray arrayWithArray:tweets];
+               [self.tableView reloadData];
+               //NSLog(@"%@", tweets);
+               /*for (NSDictionary *dictionary in tweets) {
+                   NSString *text = dictionary[@"text"];
+                   NSLog(@"%@", text);
+               }*/
+           } else {
+               NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+           }
+           [self.refreshControl endRefreshing];
+       }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +75,7 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.tweets[indexPath.row];
     //cell.createdAtLabel.text = tweet.createdAtString;
-    cell.textLabel.text = tweet.text;
+    cell.tweetLabel.text = tweet.text;
     NSString *profPicURLString = tweet.user.profPicURL;
     NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
     //NSURLRequest *request = [NSURLRequest requestWithURL:profPicURL];
