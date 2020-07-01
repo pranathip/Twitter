@@ -65,9 +65,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fik-me-EMI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fik-me-EMI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="142" id="Muc-eX-oXC" customClass="TweetCell">
@@ -167,7 +166,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rf3-9h-sQe" firstAttribute="leading" secondItem="pTz-NB-KsZ" secondAttribute="trailing" constant="13" id="1YK-fF-g4e"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="kYG-hf-HsB" secondAttribute="trailing" constant="3" id="1rD-SB-V9F"/>
                                                 <constraint firstItem="oJ2-5S-923" firstAttribute="leading" secondItem="scT-az-fxm" secondAttribute="trailing" constant="4" id="4hc-a2-puA"/>
                                                 <constraint firstItem="3uM-st-shJ" firstAttribute="leading" secondItem="GkM-cj-uQy" secondAttribute="trailing" constant="25" id="7yq-oM-RnP"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="3uM-st-shJ" secondAttribute="bottom" constant="1" id="8mD-Lo-S8E"/>
@@ -188,6 +186,7 @@
                                                 <constraint firstItem="rZM-td-Peg" firstAttribute="top" secondItem="rf3-9h-sQe" secondAttribute="bottom" constant="3" id="nKP-HG-pOa"/>
                                                 <constraint firstItem="KZY-dN-pZx" firstAttribute="leading" secondItem="rf3-9h-sQe" secondAttribute="trailing" constant="15" id="nlh-3f-Ve0"/>
                                                 <constraint firstItem="rZM-td-Peg" firstAttribute="leading" secondItem="pTz-NB-KsZ" secondAttribute="trailing" constant="13" id="sB2-MM-jK9"/>
+                                                <constraint firstItem="kYG-hf-HsB" firstAttribute="leading" secondItem="VTG-gx-Abi" secondAttribute="trailing" constant="41" id="sfm-CU-5pW"/>
                                                 <constraint firstItem="GkM-cj-uQy" firstAttribute="leading" secondItem="VRh-ZE-5Ob" secondAttribute="trailing" constant="1" id="tzf-iP-HjG"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -208,6 +207,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fik-me-EMI" firstAttribute="leading" secondItem="ugE-Ul-H9I" secondAttribute="leading" id="JGq-P6-bnS"/>
+                            <constraint firstAttribute="bottom" secondItem="Fik-me-EMI" secondAttribute="bottom" id="PEu-oT-Ewu"/>
+                            <constraint firstItem="Fik-me-EMI" firstAttribute="trailing" secondItem="ugE-Ul-H9I" secondAttribute="trailing" id="QXM-RO-0NA"/>
+                            <constraint firstItem="Fik-me-EMI" firstAttribute="top" secondItem="qax-2F-Vhk" secondAttribute="top" id="nb7-zH-MQx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ugE-Ul-H9I"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
