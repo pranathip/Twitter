@@ -87,8 +87,8 @@
 }
 
 - (void)refreshCell {
-    self.favoriteCountLabel.text = [NSString stringWithFormat: @"%d", self.tweet.favoriteCount];
-    self.retweenCountLabel.text = [NSString stringWithFormat: @"%d", self.tweet.retweetCount];
+    [self.favoriteButton setTitle:[NSString stringWithFormat: @"%d", self.tweet.favoriteCount] forState:UIControlStateNormal];
+    [self.retweetButton setTitle:[NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal];
 }
 
 @end

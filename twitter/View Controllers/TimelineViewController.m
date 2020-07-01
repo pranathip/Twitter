@@ -14,6 +14,7 @@
 #import "ComposeViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "DetailsViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -73,6 +74,14 @@
     UINavigationController *navigationController = [segue destinationViewController];
     ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
     composeController.delegate = self;
+    
+    /*UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    Tweet *tweet = self.tweets[indexPath.row];
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    //detailsViewController.tweet = tweet;*/
+    
+    
 }
 
 
@@ -85,10 +94,13 @@
     NSString *profPicURLString = tweet.user.profPicURL;
     NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
     [cell.profileImageView setImageWithURL:profPicURL];
-    cell.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
-    cell.retweenCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+    /*cell.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
+    cell.retweenCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];*/
+    [cell.favoriteButton setTitle:[NSString stringWithFormat: @"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
+    [cell.retweetButton setTitle:[NSString stringWithFormat: @"%d", cell.tweet.retweetCount] forState:UIControlStateNormal];
     cell.nameLabel.text = tweet.user.name;
-    cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@ · %@", tweet.user.screenName, tweet.createdAtString];
+    cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
+    cell.createdAtLabel.text = tweet.createdAtString;
     return cell;
 }
 
