@@ -78,6 +78,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.tweets[indexPath.row];
+    cell.tweet = tweet;
     //cell.createdAtLabel.text = tweet.createdAtString;
     cell.tweetLabel.text = tweet.text;
     NSString *profPicURLString = tweet.user.profPicURL;
@@ -96,9 +97,10 @@
 }
 
 - (void)didTweet:(nonnull Tweet *)tweet {
-    //NSLog(@"adding tweet/updating");
+    NSLog(@"adding tweet/updating");
     [self.tweets addObject:tweet];
-    [self.tableView reloadData];
+    [self getTimeline];
+    //[self.tableView reloadData];
 }
 
 @end

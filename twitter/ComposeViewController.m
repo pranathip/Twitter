@@ -22,7 +22,7 @@
 }
 - (IBAction)tweetButtonTapped:(id)sender {
     NSLog(@"tapped");
-    [[APIManager shared]postStatusWithText:@"This is my tweet 😀" completion:^(Tweet *tweet, NSError *error) {
+    [[APIManager shared]postStatusWithText:@"testing testing" completion:^(Tweet *tweet, NSError *error) {
         if(error){
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
         }
