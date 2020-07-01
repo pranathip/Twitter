@@ -139,6 +139,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="lpJ-Mf-eqn"/>
                                                     </constraints>
                                                     <state key="normal" image="retweet-icon"/>
+                                                    <state key="selected" image="retweet-icon-green"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uM-st-shJ">
                                                     <rect key="frame" x="249" y="100" width="30" height="30"/>
@@ -147,6 +148,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="uKb-ta-XZy"/>
                                                     </constraints>
                                                     <state key="normal" image="favor-icon"/>
+                                                    <state key="selected" image="favor-icon-red"/>
                                                     <connections>
                                                         <action selector="didTapFavorite:" destination="Muc-eX-oXC" eventType="touchUpInside" id="Moy-3G-Us2"/>
                                                     </connections>
@@ -302,8 +304,10 @@
         <image name="close-icon" width="26" height="24"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="favor-icon-red" width="30" height="30"/>
         <image name="message-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
+        <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
 </document>

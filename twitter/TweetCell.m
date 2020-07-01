@@ -25,6 +25,7 @@
 - (IBAction)didTapFavorite:(id)sender {
     self.tweet.favorited = YES;
     self.tweet.favoriteCount += 1;
+    self.favoriteButton.selected = YES;
     [self refreshCell];
     
     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
