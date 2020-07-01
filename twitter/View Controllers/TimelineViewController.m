@@ -79,11 +79,9 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.tweets[indexPath.row];
     cell.tweet = tweet;
-    //cell.createdAtLabel.text = tweet.createdAtString;
     cell.tweetLabel.text = tweet.text;
     NSString *profPicURLString = tweet.user.profPicURL;
     NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
-    //NSURLRequest *request = [NSURLRequest requestWithURL:profPicURL];
     [cell.profileImageView setImageWithURL:profPicURL];
     cell.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     cell.retweenCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
@@ -101,6 +99,10 @@
     [self.tweets addObject:tweet];
     [self getTimeline];
     //[self.tableView reloadData];
+}
+
+- (IBAction)tappedLogOut:(id)sender {
+    
 }
 
 @end

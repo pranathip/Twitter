@@ -140,6 +140,9 @@
                                                     </constraints>
                                                     <state key="normal" image="retweet-icon"/>
                                                     <state key="selected" image="retweet-icon-green"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="Muc-eX-oXC" eventType="touchUpInside" id="gsh-Ks-VIp"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uM-st-shJ">
                                                     <rect key="frame" x="249" y="100" width="30" height="30"/>
@@ -208,6 +211,11 @@
                         <viewLayoutGuide key="safeArea" id="ugE-Ul-H9I"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="AFq-UM-3gA">
+                            <connections>
+                                <action selector="tappedLogOut:" destination="Lbl-k5-U4i" id="eAC-0q-FDv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="edit-icon" id="PlR-fH-CbV">
                             <connections>
                                 <segue destination="Qnd-mi-7Om" kind="presentation" id="xv4-CY-IGL"/>
