@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profPicImage;
@@ -41,9 +42,85 @@
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
     
+    if (self.tweet.favorited == YES) {
+        self.favoriteButton.selected = YES;
+    }
+    if (self.tweet.retweeted == YES) {
+        self.retweetButton.selected = YES;
+    }
+    
+    
+}
+- (IBAction)didRetweet:(id)sender {
+    if (self.tweet.retweeted == YES) {
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        self.retweetButton.selected = NO;
+        [self refreshView];
+        
+        [[APIManager shared] unRetweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+            }
+            else {
+                NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+            }
+        }];
+        
+    } else {
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+        self.retweetButton.selected = YES;
+        [self refreshView];
+        
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+            }
+            else {
+                NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+            }
+        }];
+    }
+    
+}
+- (IBAction)didFavorite:(id)sender {
+    if (self.tweet.favorited == YES) {
+        self.tweet.favorited = NO;
+        self.tweet.favoriteCount -= 1;
+        self.favoriteButton.selected = NO;
+        [self refreshView];
+        
+        [[APIManager shared] unFavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+            }
+        }];
+    } else {
+        self.tweet.favorited = YES;
+        self.tweet.favoriteCount += 1;
+        self.favoriteButton.selected = YES;
+        [self refreshView];
+        
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+            }
+        }];
+    }
     
 }
 
+- (void)refreshView {
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+}
 /*
 #pragma mark - Navigation
 

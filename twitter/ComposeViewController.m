@@ -10,11 +10,12 @@
 #import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *composeTweetView;
 @property (weak, nonatomic) IBOutlet UIImageView *profPicImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 
 @end
 
@@ -23,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.composeTweetView.delegate = self;
+    [self.composeTweetView addSubview:self.placeholderLabel];
     
     // Set prof pic
     NSString *profPicURLString = self.tweet.user.profPicURL;
@@ -49,6 +52,24 @@
 }
 - (IBAction)closeButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void) textViewDidChange:(UITextView *)theTextView
+{
+    if(![self.composeTweetView hasText]) {
+        NSLog(@"no text");
+        [UIView animateWithDuration:0.15 animations:^{
+            [self.composeTweetView addSubview:self.placeholderLabel];
+            self.placeholderLabel.alpha = 1.0;
+        }];
+    } else if ([[self.composeTweetView subviews] containsObject:self.placeholderLabel]) {
+        [UIView animateWithDuration:0.15 animations:^{
+            self.placeholderLabel.alpha = 0.0;
+            
+    } completion:^(BOOL finished) {
+        //[self.placeholderLabel removeFromSuperview];
+    }];
+  }
 }
 
 /*

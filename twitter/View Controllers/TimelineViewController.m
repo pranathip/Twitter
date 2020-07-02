@@ -15,8 +15,9 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DetailsViewController.h"
+#import "ProfileViewController.h"
 
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -94,6 +95,11 @@
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
         composeController.tweet = tweet;
+        
+    } else if ([segue.identifier isEqualToString:@"profileSegue"]) {
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        profileViewController.user = sender;
+        
     }
     
     
@@ -103,6 +109,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    cell.delegate = self;
     Tweet *tweet = self.tweets[indexPath.row];
     cell.tweet = tweet;
     cell.tweetLabel.text = tweet.text;
@@ -117,6 +124,14 @@
     cell.nameLabel.text = tweet.user.name;
     cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.createdAtLabel.text = tweet.createdAtString;
+    
+    if (cell.tweet.favorited == YES) {
+        cell.favoriteButton.selected = YES;
+    }
+    
+    if (cell.tweet.retweeted == YES) {
+        cell.retweetButton.selected = YES;
+    }
     return cell;
 }
 
@@ -139,6 +154,11 @@
     appDelegate.window.rootViewController = loginViewController;
     
     [[APIManager shared] logout];
+}
+
+- (void)tweetCell:(TweetCell *)tweetCell didTap:(User *)user{
+    // TODO: Perform segue to profile view controller
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
 @end

@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
 @property (nonatomic, strong) NSString *profPicURL;
+@property (nonatomic, strong) NSString *bannerPicURL;
+@property (nonatomic, strong) NSNumber *followers;
+@property (nonatomic, strong) NSNumber *following;
 
 // Sets all properties based on the dictionary
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
