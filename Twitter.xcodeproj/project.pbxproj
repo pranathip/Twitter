@@ -17,7 +17,7 @@
 		6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD278F520BCB68B0085BC29 /* APIManager.m */; };
 		6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2790520BCC0380085BC29 /* LoginViewController.m */; };
 		6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2790820BCC04D0085BC29 /* TimelineViewController.m */; };
-		C33B37AA24AD1402004205B3 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33B37A924AD1402004205B3 /* DetailsViewController.m */; };
+		C33B37AD24AD8D6A004205B3 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33B37AC24AD8D6A004205B3 /* DetailsViewController.m */; };
 		C3C56ADA24AAF81F00E05CE4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C56AD924AAF81F00E05CE4 /* User.m */; };
 		C3C56ADD24AAF88300E05CE4 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C56ADC24AAF88300E05CE4 /* Tweet.m */; };
 		C3C56AE024AAFEA200E05CE4 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C56ADF24AAFEA200E05CE4 /* TweetCell.m */; };
@@ -44,8 +44,8 @@
 		6AD2790720BCC04D0085BC29 /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		6AD2790820BCC04D0085BC29 /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		75895B6507775E8AFBEEA2D9 /* Pods-twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitter/Pods-twitter.debug.xcconfig"; sourceTree = "<group>"; };
-		C33B37A824AD1402004205B3 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
-		C33B37A924AD1402004205B3 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		C33B37AB24AD8D6A004205B3 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		C33B37AC24AD8D6A004205B3 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		C3C56AD824AAF81F00E05CE4 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C3C56AD924AAF81F00E05CE4 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C3C56ADB24AAF88300E05CE4 /* Tweet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -103,9 +103,9 @@
 				6AD278F820BCBC140085BC29 /* Models */,
 				6AD278D820BC4B950085BC29 /* AppDelegate.h */,
 				6AD278D920BC4B950085BC29 /* AppDelegate.m */,
+				C33B37AB24AD8D6A004205B3 /* DetailsViewController.h */,
+				C33B37AC24AD8D6A004205B3 /* DetailsViewController.m */,
 				6AD278DE20BC4B950085BC29 /* Main.storyboard */,
-				C33B37A824AD1402004205B3 /* DetailsViewController.h */,
-				C33B37A924AD1402004205B3 /* DetailsViewController.m */,
 				C3C56AE124ABD38F00E05CE4 /* ComposeViewController.h */,
 				C3C56AE224ABD38F00E05CE4 /* ComposeViewController.m */,
 				C3C56ADE24AAFEA200E05CE4 /* TweetCell.h */,
@@ -261,7 +261,7 @@
 			files = (
 				C3C56AE024AAFEA200E05CE4 /* TweetCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
-				C33B37AA24AD1402004205B3 /* DetailsViewController.m in Sources */,
+				C33B37AD24AD8D6A004205B3 /* DetailsViewController.m in Sources */,
 				C3C56ADA24AAF81F00E05CE4 /* User.m in Sources */,
 				C3C56AE324ABD38F00E05CE4 /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,

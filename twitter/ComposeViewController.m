@@ -8,9 +8,13 @@
 
 #import "APIManager.h"
 #import "ComposeViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *composeTweetView;
+@property (weak, nonatomic) IBOutlet UIImageView *profPicImage;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 
 @end
 
@@ -19,6 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Set prof pic
+    NSString *profPicURLString = self.tweet.user.profPicURL;
+    NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
+    [self.profPicImage setImageWithURL:profPicURL];
+    self.profPicImage.layer.cornerRadius = 6;
+    
+    self.nameLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.name];
+    self.screenNameLabel.text = self.tweet.user.screenName;
+    
 }
 - (IBAction)tweetButtonTapped:(id)sender {
     NSLog(@"tapped");

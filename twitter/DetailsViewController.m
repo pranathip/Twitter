@@ -7,13 +7,14 @@
 //
 
 #import "DetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailsViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *profPicImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
@@ -26,6 +27,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Set prof pic
+    NSString *profPicURLString = self.tweet.user.profPicURL;
+    NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
+    [self.profPicImage setImageWithURL:profPicURL];
+    self.profPicImage.layer.cornerRadius = 6;
+    
+    self.nameLabel.text = self.tweet.user.name;
+    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.screenName];
+    self.textLabel.text = self.tweet.text;
+    self.createdAtLabel.text = self.tweet.createdAtString;
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+    
+    
 }
 
 /*

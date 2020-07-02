@@ -26,6 +26,14 @@
 
 @implementation TimelineViewController
 
+//ADDED SO THAT SELECTED ROW UNSELECTS AFTER RETURNING TO VIEW
+-(void)viewWillAppear:(BOOL)animated {
+    NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+    if (indexPath) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:animated];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
@@ -71,15 +79,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
-    
-    /*UITableViewCell *tappedCell = sender;
+    UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
     Tweet *tweet = self.tweets[indexPath.row];
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    //detailsViewController.tweet = tweet;*/
+    
+    if ([segue.identifier isEqualToString:@"detailsSegue"]) {
+        NSLog(@"detailing");
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.tweet = tweet;
+        
+    } else if ([segue.identifier isEqualToString:@"composeSegue"]){
+        NSLog(@"composing");
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+        composeController.tweet = tweet;
+    }
     
     
 }
@@ -94,6 +109,7 @@
     NSString *profPicURLString = tweet.user.profPicURL;
     NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
     [cell.profileImageView setImageWithURL:profPicURL];
+    cell.profileImageView.layer.cornerRadius = 6;
     /*cell.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     cell.retweenCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];*/
     [cell.favoriteButton setTitle:[NSString stringWithFormat: @"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
