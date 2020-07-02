@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSMutableArray *tweets;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -100,6 +101,11 @@
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.user = sender;
         
+    } else if ([segue.identifier isEqualToString:@"profileButtonSegue"]) {
+        //ProfileViewController *profileViewController = [segue destinationViewController];
+        //[[APIManager shared] getProfileInfo:^(User *user, NSError *error) {
+            //profileViewController.user = user;
+        //}];
     }
     
     
@@ -119,8 +125,8 @@
     cell.profileImageView.layer.cornerRadius = 6;
     /*cell.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     cell.retweenCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];*/
-    [cell.favoriteButton setTitle:[NSString stringWithFormat: @"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
-    [cell.retweetButton setTitle:[NSString stringWithFormat: @"%d", cell.tweet.retweetCount] forState:UIControlStateNormal];
+    [cell.favoriteButton setTitle:[NSString stringWithFormat: @"%@", [self suffixNumber:[NSNumber numberWithInt:cell.tweet.favoriteCount]]] forState:UIControlStateNormal];
+    [cell.retweetButton setTitle:[NSString stringWithFormat: @"%@", [self suffixNumber:[NSNumber numberWithInt:cell.tweet.retweetCount]]] forState:UIControlStateNormal];
     cell.nameLabel.text = tweet.user.name;
     cell.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.createdAtLabel.text = tweet.createdAtString;
@@ -155,10 +161,46 @@
     
     [[APIManager shared] logout];
 }
+- (IBAction)tappedProfile:(id)sender {
+    [[APIManager shared] getProfileInfo:^(User *user, NSError *error) {
+        if (user) {
+            NSLog(@"😎😎😎 Successfully loaded profile");
+            // Set prof pic
+            [self performSegueWithIdentifier:@"profileSegue" sender:user];
+        } else {
+            NSLog(@"😫😫😫 Error getting profile: %@", error.localizedDescription);
+        }
+    }];
+    
+}
 
 - (void)tweetCell:(TweetCell *)tweetCell didTap:(User *)user{
     // TODO: Perform segue to profile view controller
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
+
+
+// SUFFIX NUMBER
+- (NSString*) suffixNumber:(NSNumber*)number
+{
+    if (!number)
+        return @"";
+
+    long long num = [number longLongValue];
+
+    int s = ( (num < 0) ? -1 : (num > 0) ? 1 : 0 );
+    NSString* sign = (s == -1 ? @"-" : @"" );
+
+    num = llabs(num);
+
+    if (num < 1000)
+        return [NSString stringWithFormat:@"%@%lld",sign,num];
+
+    int exp = (int) (log10l(num) / 3.f); //log10l(1000));
+
+    NSArray* units = @[@"K",@"M",@"G",@"T",@"P",@"E"];
+
+    return [NSString stringWithFormat:@"%@%.1f%@",sign, (num / pow(1000, exp)), [units objectAtIndex:(exp-1)]];
 }
 
 @end

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *characterCount;
 
 @end
 
@@ -27,14 +28,24 @@
     self.composeTweetView.delegate = self;
     [self.composeTweetView addSubview:self.placeholderLabel];
     
-    // Set prof pic
-    NSString *profPicURLString = self.tweet.user.profPicURL;
-    NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
-    [self.profPicImage setImageWithURL:profPicURL];
-    self.profPicImage.layer.cornerRadius = 6;
+    [[APIManager shared] getProfileInfo:^(User *user, NSError *error) {
+        if (user) {
+            NSLog(@"😎😎😎 Successfully loaded profile");
+            // Set prof pic
+            NSString *profPicURLString = user.profPicURL;
+            NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
+            [self.profPicImage setImageWithURL:profPicURL];
+            self.profPicImage.layer.cornerRadius = 6;
+            
+            self.nameLabel.text = [NSString stringWithFormat:@"@%@", user.name];
+            self.screenNameLabel.text = user.screenName;
+        } else {
+            NSLog(@"😫😫😫 Error getting profile: %@", error.localizedDescription);
+        }
+    }];
     
-    self.nameLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.name];
-    self.screenNameLabel.text = self.tweet.user.screenName;
+    
+    
     
 }
 - (IBAction)tweetButtonTapped:(id)sender {
@@ -56,6 +67,7 @@
 
 - (void) textViewDidChange:(UITextView *)theTextView
 {
+    
     if(![self.composeTweetView hasText]) {
         NSLog(@"no text");
         [UIView animateWithDuration:0.15 animations:^{
@@ -70,6 +82,27 @@
         //[self.placeholderLabel removeFromSuperview];
     }];
   }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // TODO: Check the proposed new text character count
+   // Allow or disallow the new text
+    // Set the max character limit
+    int characterLimit = 140;
+
+    // Construct what the new text would be if we allowed the user's latest edit
+    NSString *newText = [self.composeTweetView.text stringByReplacingCharactersInRange:range withString:text];
+
+    // TODO: Update Character Count Label
+    self.characterCount.text = [NSString stringWithFormat: @"%lu", 140 - newText.length];
+    if (140 - newText.length <= 20) {
+        self.characterCount.textColor = UIColor.redColor;
+    } else {
+        self.characterCount.textColor = UIColor.lightGrayColor;
+    }
+
+    // The new text should be allowed? True/False
+    return newText.length < characterLimit;
 }
 
 /*

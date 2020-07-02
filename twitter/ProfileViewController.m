@@ -26,6 +26,7 @@
     // Do any additional setup after loading the view.
     
     // Set prof pic
+    NSLog(@"Setting prof pic");
     NSString *profPicURLString = self.user.profPicURL;
     NSURL *profPicURL = [NSURL URLWithString:profPicURLString];
     [self.profPicView setImageWithURL:profPicURL];

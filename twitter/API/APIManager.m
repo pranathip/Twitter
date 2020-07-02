@@ -61,29 +61,20 @@ static NSString * const consumerSecret = @"BwcgMnFdsznJvm00iSid9eFcNgbhaFEHXiu1p
             // There was a problem
             completion(nil, error);
         }];
-    
-    // ARRAY OF DICTIONARIES
-    /*[self GET:@"1.1/statuses/home_timeline.json"
-   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
-       
-       // Manually cache the tweets. If the request fails, restore from cache if possible.
-       NSData *data = [NSKeyedArchiver archivedDataWithRootObject:tweetDictionaries];
-       [[NSUserDefaults standardUserDefaults] setValue:data forKey:@"hometimeline_tweets"];
+}
 
-       completion(tweetDictionaries, nil);
-       
-   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       
-       NSArray *tweetDictionaries = nil;
-       
-       // Fetch tweets from cache if possible
-       NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:@"hometimeline_tweets"];
-       if (data != nil) {
-           tweetDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-       }
-       
-       completion(tweetDictionaries, error);
-   }];*/
+- (void) getProfileInfo:(void(^)(User *user, NSError *error))completion {
+    
+    // Create a GET Request
+    [self GET:@"1.1/account/verify_credentials.json"
+        parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable userDictionary) {
+            // Success
+            User *user = [[User alloc] initWithDictionary:userDictionary];
+            completion(user, nil);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            // There was a problem
+            completion(nil, error);
+        }];
 }
 
 - (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion{

@@ -189,12 +189,20 @@
                     </view>
                     <navigationItem key="navigationItem" title=" HOME" id="MOc-fV-EZE">
                         <barButtonItem key="backBarButtonItem" title="  " id="jmB-sb-oVc"/>
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="AFq-UM-3gA">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="tappedLogOut:" destination="Lbl-k5-U4i" id="eAC-0q-FDv"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Logout" id="AFq-UM-3gA">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="tappedLogOut:" destination="Lbl-k5-U4i" id="eAC-0q-FDv"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="person.crop.circle" catalog="system" id="s58-nY-ilv">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="tappedProfile:" destination="Lbl-k5-U4i" id="woQ-Gk-4wK"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="PlR-fH-CbV">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -276,12 +284,20 @@
                                 <color key="textColor" red="0.57446332359999996" green="0.57446332359999996" blue="0.57446332359999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OH-d8-rnd">
+                                <rect key="frame" x="365" y="89" width="29" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NaU-of-hAt" firstAttribute="leading" secondItem="HWN-hb-iT4" secondAttribute="leading" id="3aL-3z-4r5"/>
                             <constraint firstItem="HWN-hb-iT4" firstAttribute="top" secondItem="0NH-gd-cyZ" secondAttribute="top" constant="33" id="Coz-64-gmQ"/>
+                            <constraint firstItem="3OH-d8-rnd" firstAttribute="top" secondItem="0NH-gd-cyZ" secondAttribute="top" constant="33" id="LX6-tv-4WO"/>
                             <constraint firstItem="HWN-hb-iT4" firstAttribute="leading" secondItem="gHA-Ie-pjb" secondAttribute="trailing" constant="15" id="NAM-qG-v72"/>
+                            <constraint firstItem="0NH-gd-cyZ" firstAttribute="trailing" secondItem="3OH-d8-rnd" secondAttribute="trailing" constant="20" id="PeQ-u2-OLf"/>
                             <constraint firstItem="18B-nq-Zph" firstAttribute="leading" secondItem="0NH-gd-cyZ" secondAttribute="leading" constant="20" id="SYL-1o-KRe"/>
                             <constraint firstItem="gHA-Ie-pjb" firstAttribute="leading" secondItem="0NH-gd-cyZ" secondAttribute="leading" constant="20" id="U0a-7o-f8Q"/>
                             <constraint firstItem="gHA-Ie-pjb" firstAttribute="top" secondItem="0NH-gd-cyZ" secondAttribute="top" constant="20" id="Vom-2h-hqA"/>
@@ -308,6 +324,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="characterCount" destination="3OH-d8-rnd" id="7yG-VU-1hm"/>
                         <outlet property="composeTweetView" destination="18B-nq-Zph" id="WI0-uZ-zIe"/>
                         <outlet property="nameLabel" destination="HWN-hb-iT4" id="FhK-W6-Z5C"/>
                         <outlet property="placeholderLabel" destination="rtd-SI-X7g" id="qk2-z7-kuv"/>
@@ -664,6 +681,7 @@
         <image name="close-icon" width="26" height="24"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="favor-icon-red" width="30" height="30"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="retweet-icon" width="30" height="30"/>
         <image name="retweet-icon-green" width="30" height="30"/>
         <image name="square.and.pencil" catalog="system" width="128" height="118"/>

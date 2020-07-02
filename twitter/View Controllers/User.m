@@ -16,6 +16,8 @@
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
         self.profPicURL = dictionary[@"profile_image_url_https"];
+        self.profPicURL = [self.profPicURL
+        stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         self.bannerPicURL = dictionary[@"profile_banner_url"];
         self.followers = dictionary[@"followers_count"];
         self.following = dictionary[@"friends_count"];
