@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bioLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @end
 
@@ -38,9 +40,11 @@
     [self.bannerPicView setImageWithURL:bannerPicURL];
     
     self.nameLabel.text = self.user.name;
-    self.screenNameLabel.text = self.user.screenName;
+    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", self.user.screenName];
     self.followerLabel.text = [NSString stringWithFormat:@"%@", [self suffixNumber:self.user.followers]];
     self.followingLabel.text = [NSString stringWithFormat:@"%@", [self suffixNumber:self.user.following]];
+    self.bioLabel.text = self.user.bio;
+    self.locationLabel.text = self.user.location;
     
     
 }

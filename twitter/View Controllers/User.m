@@ -21,6 +21,8 @@
         self.bannerPicURL = dictionary[@"profile_banner_url"];
         self.followers = dictionary[@"followers_count"];
         self.following = dictionary[@"friends_count"];
+        self.bio = dictionary[@"description"];
+        self.location = dictionary[@"location"];
         // Init other properties
     }
     return self;

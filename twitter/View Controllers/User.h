@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *bannerPicURL;
 @property (nonatomic, strong) NSNumber *followers;
 @property (nonatomic, strong) NSNumber *following;
+@property (nonatomic, strong) NSString *bio;
+@property (nonatomic, strong) NSString *location;
 
 // Sets all properties based on the dictionary
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
