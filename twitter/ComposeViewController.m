@@ -37,8 +37,8 @@
             [self.profPicImage setImageWithURL:profPicURL];
             self.profPicImage.layer.cornerRadius = 6;
             
-            self.nameLabel.text = [NSString stringWithFormat:@"@%@", user.name];
-            self.screenNameLabel.text = user.screenName;
+            self.nameLabel.text = user.name;
+            self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", user.screenName];
         } else {
             NSLog(@"😫😫😫 Error getting profile: %@", error.localizedDescription);
         }

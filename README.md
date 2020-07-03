@@ -44,6 +44,7 @@ The following **additional** features are implemented:
 
 - [x] Countdown number turns red when 20 characters are remaining in tweet.
 - [x] Profile picture, name, and screen name are displayed when composing a tweet.
+- [x] Placeholder text and animated fade in and fade out when composing a tweet.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -54,7 +55,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://recordit.co/BEBogm6Ixk.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with RecordIt.
 

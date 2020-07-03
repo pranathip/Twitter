@@ -118,8 +118,9 @@
 }
 
 - (void)refreshView {
-    [self.favoriteButton setTitle:[NSString stringWithFormat: @"%@", [self suffixNumber:[NSNumber numberWithInt:self.tweet.favoriteCount]]] forState:UIControlStateNormal];
-    [self.retweetButton setTitle:[NSString stringWithFormat: @"%@", [self suffixNumber:[NSNumber numberWithInt:self.tweet.retweetCount]]] forState:UIControlStateNormal];
+    NSLog(@"Refresh View");
+    [self.favoriteButton setTitle:[NSString stringWithFormat: @"%@", [self suffixNumber:[NSNumber numberWithInt:self.tweet.favoriteCount]]] forState:UIControlStateSelected];
+    [self.retweetButton setTitle:[NSString stringWithFormat: @"%@", [self suffixNumber:[NSNumber numberWithInt:self.tweet.retweetCount]]] forState:UIControlStateSelected];
 }
 
 - (NSString*) suffixNumber:(NSNumber*)number
